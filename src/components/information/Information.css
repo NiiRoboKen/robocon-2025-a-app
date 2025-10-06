@@ -1,0 +1,9 @@
+.info {
+  display: flex;
+}
+.box {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 2px #000000;
+}
