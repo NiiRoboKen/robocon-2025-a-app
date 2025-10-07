@@ -21,3 +21,20 @@ class Setting {
 }
 
 export const setting = new Setting();
+
+export const modeThema = {
+	blue: {
+		colors:{
+			backGraound: "#87CEFA",
+			workingArea: "#6495ED",
+			other: "#1E90FF"
+		}
+	},
+	red: {
+		colors:{
+			backGraound: "#FFC0CB",
+			workingArea: " 	#FF69B4",
+			other: "#FF0000"
+		}
+	}
+}

@@ -1,13 +1,15 @@
 import { useRef, useState } from "react";
-import { Stage, Layer, Rect, Line, Circle, Arc , Arrow} from "react-konva";
-import { setting } from "../../controller";
-import { useController } from "../../hooks/useController";
+import { Stage, Layer, Rect, Line, Circle, Arc, Arrow } from "react-konva";
+import { setting, modeThema } from "../../controller";
+import { useController, useModeStore } from "../../hooks/useController";
 import { useWebSocket } from "../../websocket";
 
 const Konva = () => {
 	const { targetPosition, setTargetPosition, show, setShow } = useController();
 	const { realtimePosition } = useWebSocket();
 	const [line, setLine] = useState<number[]>();
+	const { mode } = useModeStore();
+	const colorTheme = modeThema[mode];
 	const stageRef = useRef(null);
 
 	const handleTouchStart = () => {
@@ -27,8 +29,8 @@ const Konva = () => {
 		setLine([
 			touchPosition.x,
 			touchPosition.y,
-			touchPosition.x + 60 * Math.cos(targetPosition.theta * Math.PI / 180),
-			touchPosition.y + 60 * Math.sin(targetPosition.theta * Math.PI / 180),
+			touchPosition.x + 60 * Math.cos((targetPosition.theta * Math.PI) / 180),
+			touchPosition.y + 60 * Math.sin((targetPosition.theta * Math.PI) / 180),
 		]);
 	};
 
@@ -55,22 +57,6 @@ const Konva = () => {
 			ref={stageRef}
 		>
 			<Layer>
-				<Line
-					points={[
-						0,
-						0,
-						setting.fieldSize.x,
-						0,
-						setting.fieldSize.x,
-						setting.fieldSize.y,
-						0,
-						setting.fieldSize.y,
-						0,
-						0,
-					]}
-					stroke="black"
-				/>
-
 				<Rect //touch field
 					x={0}
 					y={0}
@@ -78,6 +64,7 @@ const Konva = () => {
 					height={setting.fieldSize.y}
 					onTouchStart={handleTouchStart}
 					onTouchMove={handleTouchMove}
+					fill={colorTheme.colors.backGraound}
 				/>
 
 				<Rect //realtime robot
@@ -109,6 +96,22 @@ const Konva = () => {
 					outerRadius={30}
 					fill="Blue"
 					fillEnabled={show}
+				/>
+
+				<Line
+					points={[
+						0,
+						0,
+						setting.fieldSize.x,
+						0,
+						setting.fieldSize.x,
+						setting.fieldSize.y,
+						0,
+						setting.fieldSize.y,
+						0,
+						0,
+					]}
+					stroke="black"
 				/>
 			</Layer>
 		</Stage>
