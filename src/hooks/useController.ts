@@ -7,10 +7,6 @@ interface TargetPositionStoreType {
 	show: boolean;
 	setShow?: (showJudge: boolean) => void;
 }
-// interface RealtimePositionStoreType {
-// 	realtimePosition: Position;
-// 	setRealtimePosition?: (positionInfomation: Position) => void;
-// }
 
 export const useController = create<TargetPositionStoreType>((set) => ({
 	targetPosition: setting.defaultRobotPosition,
@@ -20,8 +16,14 @@ export const useController = create<TargetPositionStoreType>((set) => ({
 	setShow: (showJudge: boolean) => set({show: showJudge})
 }));
 
-// export const useMonitor = create<RealtimePositionStoreType>((set) => ({
-// 	realtimePosition: setting.defaultRobotPosition,
-// 	setRealtimePosition: (positionInfomation: Position) =>
-// 		set({ realtimePosition: positionInfomation })
-// }))
+type ColorMode = "blue" | "red";
+
+interface ModeState {
+	mode: ColorMode;
+	toggleMode: () => void;
+}
+
+export const useModeStore = create<ModeState>((set)=> ({
+	mode: "blue",
+	toggleMode: () => set((s) => ({mode: s.mode === "blue" ? "red": "blue"})),
+}))
