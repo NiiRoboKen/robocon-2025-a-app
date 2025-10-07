@@ -18,10 +18,10 @@ const Konva = () => {
 
 		setTargetPosition({
 			x: Math.round(
-				Math.max(Math.min(touchPosition.x, setting.fieldSize.x), 0),
+				Math.max(Math.min(touchPosition.x, setting.fieldSize.width), 0),
 			),
 			y: Math.round(
-				Math.max(Math.min(touchPosition.y, setting.fieldSize.y), 0),
+				Math.max(Math.min(touchPosition.y, setting.fieldSize.height), 0),
 			),
 			theta: realtimePosition.theta,
 		});
@@ -40,33 +40,70 @@ const Konva = () => {
 
 		const xValue = touchMovePosition.x - targetPosition.x;
 		const yValue = touchMovePosition.y - targetPosition.y;
-		//
+
 		const theta = Math.atan2(yValue, xValue) * (180 / Math.PI);
 		setTargetPosition({ ...targetPosition, theta: Math.round(theta) });
 		const tempArray = line?.slice(0, 2);
 		tempArray.push(touchMovePosition.x, touchMovePosition.y);
 		setLine(tempArray);
-
-		// line.current=[...tempArray, touchMovePosition.x, touchMovePosition.y];
 	};
 
 	return (
 		<Stage
-			width={setting.fieldSize.x}
-			height={setting.fieldSize.y}
+			width={setting.fieldSize.width}
+			height={setting.fieldSize.height}
 			ref={stageRef}
 		>
 			<Layer>
-				<Rect //touch field
+				<Rect //background
 					x={0}
 					y={0}
-					width={setting.fieldSize.x}
-					height={setting.fieldSize.y}
-					onTouchStart={handleTouchStart}
-					onTouchMove={handleTouchMove}
-					fill={colorTheme.colors.backGraound}
+					width={setting.fieldSize.width}
+					height={setting.fieldSize.height}
+					fill={colorTheme.colors.backGround}
 				/>
-
+				<Rect // share box area
+					x={colorTheme.shareBoxAreaPosition.x}
+					y={colorTheme.shareBoxAreaPosition.y}
+					width={setting.shareBoxArea.width}
+					height={setting.shareBoxArea.height}
+					fill="white"
+				/>
+				<Rect // own box area
+					x={colorTheme.ownBoxAreaPosition.x}
+					y={colorTheme.ownBoxAreaPosition.y}
+					width={setting.ownBoxArea.width}
+					height={setting.ownBoxArea.height}
+					fill={colorTheme.colors.other}
+				/>
+				<Rect // working area
+					x={setting.workingArea.x}
+					y={setting.workingArea.y}
+					width={setting.workingArea.width}
+					height={setting.workingArea.height}
+					fill={colorTheme.colors.workingArea}
+				/>
+				<Rect // gate area
+					x={setting.gateArea.x}
+					y={setting.gateArea.y}
+					width={setting.gateArea.width}
+					height={setting.gateArea.height}
+					fill={colorTheme.colors.other}
+				/>
+				<Rect // foot	spot
+					x={colorTheme.footSpotPosition.x}
+					y={colorTheme.footSpotPosition.y}
+					height={setting.footSpot.height}
+					width={setting.footSpot.width}
+					fill={colorTheme.colors.backGround}
+				/>
+				<Rect // start zone
+					width={setting.startZone.width}
+					height={setting.startZone.height}
+					x={colorTheme.startZonePosition.x}
+					y={colorTheme.startZonePosition.y}
+					fill={colorTheme.colors.other}
+				/>
 				<Rect //realtime robot
 					x={realtimePosition.x}
 					y={realtimePosition.y}
@@ -80,6 +117,16 @@ const Konva = () => {
 					strokeWidth={5}
 					stroke={"Black"}
 				/>
+
+				<Rect //touch field
+					x={0}
+					y={0}
+					width={setting.fieldSize.width}
+					height={setting.fieldSize.height}
+					onTouchStart={handleTouchStart}
+					onTouchMove={handleTouchMove}
+				/>
+
 				<Circle
 					radius={20}
 					x={targetPosition.x}
@@ -102,16 +149,17 @@ const Konva = () => {
 					points={[
 						0,
 						0,
-						setting.fieldSize.x,
+						setting.fieldSize.width,
 						0,
-						setting.fieldSize.x,
-						setting.fieldSize.y,
+						setting.fieldSize.width,
+						setting.fieldSize.height,
 						0,
-						setting.fieldSize.y,
+						setting.fieldSize.height,
 						0,
 						0,
 					]}
 					stroke="black"
+					strokeWidth={5}
 				/>
 			</Layer>
 		</Stage>

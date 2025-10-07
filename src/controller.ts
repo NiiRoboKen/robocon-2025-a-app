@@ -8,33 +8,51 @@ export type Position = Field & {
 };
 
 class Setting {
-  fieldSize = { x: 525, y: 1050 };
-  robotSize = { x: 150, y: 150 };
+	fieldSize = { width: 525, height: 1050 };
+	robotSize = { width: 100, height: 100 };
 
-  get defaultRobotPosition() {
-    return {
-      x: 0,
-      y: this.fieldSize.y - this.robotSize.y,
-      theta: 0,
-    };
-  }
+	ownBoxArea = { width: 250, height: 200 };
+	shareBoxArea = { width: 60, height: 370 };
+	workingArea = { width: 525, height: 500, x: 0, y: 550 };
+	gateArea = { width: 525, height: 100, x: 0, y: 650 };
+	footSpot = { width: 100, height: 100 };
+	startZone = { width: 100, height: 100 };
+
+	get defaultRobotPosition() {
+		return {
+			x: 0,
+			y: this.fieldSize.height - this.robotSize.height,
+			theta: 0,
+		};
+	}
 }
 
 export const setting = new Setting();
 
 export const modeThema = {
 	blue: {
-		colors:{
-			backGraound: "#87CEFA",
+		colors: {
+			backGround: "#87CEFA",
 			workingArea: "#6495ED",
-			other: "#1E90FF"
-		}
+			other: "#1E90FF",
+		},
+		ownBoxAreaPosition: { x: 275, y: 0 },
+		shareBoxAreaPosition: { x: 0, y: 0 },
+		footSpotPosition: { x: setting.fieldSize.width - 100, y: 650 },
+		startZonePosition: {
+			x: setting.startZone.width - 100,
+			y: setting.fieldSize.height - 100,
+		},
 	},
 	red: {
-		colors:{
-			backGraound: "#FFC0CB",
+		colors: {
+			backGround: "#FFC0CB",
 			workingArea: " 	#FF69B4",
-			other: "#FF0000"
-		}
-	}
-}
+			other: "#FF0000",
+		},
+		ownBoxAreaPosition: { x: 0, y: 0 },
+		shareBoxAreaPosition: { x: 465, y: 0 },
+		footSpotPosition: { x: 0, y: 650 },
+		startZonePosition: { x: 0, y: setting.fieldSize.height - 100 },
+	},
+};
