@@ -1,15 +1,16 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import {type Position, setting } from "./controller";
+import { type Position, setting } from "./controller.ts";
+// import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
-	realtimePosition: Position;
+	realtimePosition: Position ;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
 	sendMessage: (data: Position) => void;
 	connect: () => void;
 	disconnect: () => void;
-}
+};
 
 export const useWebSocket = create<WebSocketState>((set, get) => ({
 	socket: null,
@@ -17,7 +18,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 	status: "CLOSE",
 
 	connect: () => {
-		if (get().socket) return; 
+		if (get().socket) return;
 
 		const socket = new ReconnectingWebSocket("ws://localhost:3000/ws");
 

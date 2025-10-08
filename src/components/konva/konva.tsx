@@ -12,6 +12,8 @@ const Konva = () => {
 	const colorTheme = modeThema[mode];
 	const stageRef = useRef(null);
 
+	// const defaultStartPosition: Position = colorTheme.defaultPosition;
+ 
 	const handleTouchStart = () => {
 		const touchPosition = stageRef.current?.getPointerPosition();
 		if (!touchPosition) return;

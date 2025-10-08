@@ -1,8 +1,8 @@
-import { type Position, setting } from "../controller";
+import { type Position, setting} from "../controller";
 import { create } from "zustand";
 
 interface TargetPositionStoreType {
-	targetPosition: Position;
+	targetPosition: Position | null;
 	setTargetPosition?: (positionInfomation : Position) => void;
 	show: boolean;
 	setShow?: (showJudge: boolean) => void;
