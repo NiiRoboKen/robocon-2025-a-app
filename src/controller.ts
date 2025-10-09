@@ -43,10 +43,6 @@ export const modeThema = {
 			x: setting.fieldSize.width - setting.startZone.width,
 			y: setting.fieldSize.height - setting.startZone.height,
 		}
-		// defaultRobotPosition: {
-		// 	x: setting.fieldSize.width,
-		// 	y: setting.fieldSize.height - setting.startZone.width,
-		// },
 	},
 	red: {
 		colors: {
@@ -61,9 +57,5 @@ export const modeThema = {
 			x: 0,
 			y: setting.fieldSize.height - setting.startZone.height,
 		}
-		// defaultRobotPosition: {
-		// 	x: 0,
-		// 	y: setting.fieldSize.height - setting.startZone.width,
-		// },
 	},
 };
