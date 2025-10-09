@@ -20,7 +20,7 @@ const Konva = () => {
 	const [line, setLine] = useState<number[]>();
 	const { mode } = useModeStore();
 	const colorTheme = ModeTheme[mode];
-	const [fielddImage] = useImage(colorTheme.fieldImageSrc);
+	const [fieldImage] = useImage(colorTheme.fieldImageSrc);
 	const stageRef = useRef(null);
 
 	// const defaultStartPosition: Position = colorTheme.defaultPosition;
@@ -69,7 +69,7 @@ const Konva = () => {
 		>
 			<Layer>
 				<Image
-					image={fielddImage}
+					image={fieldImage}
 					x={0}
 					y={0}
 					width={setting.fieldSize.width}
