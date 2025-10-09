@@ -86,7 +86,7 @@ const Konva = () => {
 					shadowEnabled={false}
 					width={100}
 					height={100}
-					fill="red"
+					fill={colorTheme.colors.robotColor}
 					shadowBlur={10}
 					strokeWidth={5}
 					stroke={"Black"}
