@@ -2,7 +2,7 @@ import { type Position, setting} from "../controller";
 import { create } from "zustand";
 
 interface TargetPositionStoreType {
-	targetPosition: Position | null;
+	targetPosition: Position;
 	setTargetPosition?: (positionInfomation : Position) => void;
 	show: boolean;
 	setShow?: (showJudge: boolean) => void;
