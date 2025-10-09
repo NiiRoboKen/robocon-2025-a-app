@@ -22,7 +22,7 @@ class Setting {
 
 	get defaultRobotPosition() {
 		return {
-			x: 0,
+			x: this.fieldSize.width / 2 - this.robotSize.width / 2,
 			y: this.fieldSize.height - this.robotSize.height,
 			theta: 0,
 		};

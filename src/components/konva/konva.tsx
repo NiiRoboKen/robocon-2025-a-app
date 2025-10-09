@@ -79,6 +79,7 @@ const Konva = () => {
 				/>
 
 				<Rect //realtime robot
+					x={realtimePosition.x}
 					y={realtimePosition.y}
 					rotation={realtimePosition.theta}
 					opacity={0.3}
@@ -89,6 +90,7 @@ const Konva = () => {
 					shadowBlur={10}
 					strokeWidth={5}
 					stroke={"Black"}
+					draggable
 				/>
 
 				<Circle
