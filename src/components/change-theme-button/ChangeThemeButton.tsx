@@ -1,12 +1,14 @@
-import {useModeStore} from "../../hooks/useController.ts";
+import { useModeStore } from "../../hooks/useController.ts";
+import "./ChangeThemeButton.css";
 
 const ChangeThemeButton = () => {
+	const { toggleMode } = useModeStore();
 
-	const {toggleMode} = useModeStore();
-	
 	return (
-		<button onClick={toggleMode}>Change Thema</button>
+		<button className="change-theme-button" onClick={toggleMode}>
+			Change Thema
+		</button>
 	);
-}
+};
 
 export default ChangeThemeButton;
