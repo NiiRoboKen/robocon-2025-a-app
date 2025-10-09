@@ -1,19 +1,30 @@
 import { useRef, useState } from "react";
-import { Stage, Layer, Rect, Line, Circle, Arc, Arrow } from "react-konva";
-import { setting, modeThema } from "../../controller";
+import {
+	Stage,
+	Layer,
+	Rect,
+	Line,
+	Circle,
+	Arc,
+	Arrow,
+	Image,
+} from "react-konva";
+import { setting, ModeTheme } from "../../controller";
 import { useController, useModeStore } from "../../hooks/useController";
 import { useWebSocket } from "../../websocket";
+import useImage from "use-image";
 
 const Konva = () => {
 	const { targetPosition, setTargetPosition, show, setShow } = useController();
 	const { realtimePosition } = useWebSocket();
 	const [line, setLine] = useState<number[]>();
 	const { mode } = useModeStore();
-	const colorTheme = modeThema[mode];
+	const colorTheme = ModeTheme[mode];
+	const [fielddImage] = useImage(colorTheme.fieldImageSrc);
 	const stageRef = useRef(null);
 
 	// const defaultStartPosition: Position = colorTheme.defaultPosition;
- 
+
 	const handleTouchStart = () => {
 		const touchPosition = stageRef.current?.getPointerPosition();
 		if (!touchPosition) return;
@@ -57,57 +68,17 @@ const Konva = () => {
 			ref={stageRef}
 		>
 			<Layer>
-				<Rect //background
+				<Image
+					image={fielddImage}
 					x={0}
 					y={0}
 					width={setting.fieldSize.width}
 					height={setting.fieldSize.height}
-					fill={colorTheme.colors.backGround}
+					onTouchStart={handleTouchStart}
+					onTouchMove={handleTouchMove}
 				/>
-				<Rect // share box area
-					x={colorTheme.shareBoxAreaPosition.x}
-					y={colorTheme.shareBoxAreaPosition.y}
-					width={setting.shareBoxArea.width}
-					height={setting.shareBoxArea.height}
-					fill="white"
-				/>
-				<Rect // own box area
-					x={colorTheme.ownBoxAreaPosition.x}
-					y={colorTheme.ownBoxAreaPosition.y}
-					width={setting.ownBoxArea.width}
-					height={setting.ownBoxArea.height}
-					fill={colorTheme.colors.other}
-				/>
-				<Rect // working area
-					x={setting.workingArea.x}
-					y={setting.workingArea.y}
-					width={setting.workingArea.width}
-					height={setting.workingArea.height}
-					fill={colorTheme.colors.workingArea}
-				/>
-				<Rect // gate area
-					x={setting.gateArea.x}
-					y={setting.gateArea.y}
-					width={setting.gateArea.width}
-					height={setting.gateArea.height}
-					fill={colorTheme.colors.other}
-				/>
-				<Rect // foot	spot
-					x={colorTheme.footSpotPosition.x}
-					y={colorTheme.footSpotPosition.y}
-					height={setting.footSpot.height}
-					width={setting.footSpot.width}
-					fill={colorTheme.colors.backGround}
-				/>
-				<Rect // start zone
-					width={setting.startZone.width}
-					height={setting.startZone.height}
-					x={colorTheme.startZonePosition.x}
-					y={colorTheme.startZonePosition.y}
-					fill={colorTheme.colors.other}
-				/>
+
 				<Rect //realtime robot
-					x={realtimePosition.x}
 					y={realtimePosition.y}
 					rotation={realtimePosition.theta}
 					opacity={0.3}
@@ -118,15 +89,6 @@ const Konva = () => {
 					shadowBlur={10}
 					strokeWidth={5}
 					stroke={"Black"}
-				/>
-
-				<Rect //touch field
-					x={0}
-					y={0}
-					width={setting.fieldSize.width}
-					height={setting.fieldSize.height}
-					onTouchStart={handleTouchStart}
-					onTouchMove={handleTouchMove}
 				/>
 
 				<Circle
@@ -160,7 +122,7 @@ const Konva = () => {
 						0,
 						0,
 					]}
-					stroke="black"
+					stroke={colorTheme.colors.other}
 					strokeWidth={5}
 				/>
 			</Layer>

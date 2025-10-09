@@ -1,3 +1,5 @@
+import useImage from "use-image";
+
 export type Field = {
 	x: number;
 	y: number;
@@ -7,8 +9,8 @@ export type Position = Field & {
 	theta: number;
 };
 
-class	Setting {
-	fieldSize =  { width: 525, height: 1050 };
+class Setting {
+	fieldSize = { width: 525, height: 1050 };
 	robotSize = { width: 100, height: 100 };
 
 	ownBoxArea = { width: 250, height: 200 };
@@ -25,37 +27,29 @@ class	Setting {
 			theta: 0,
 		};
 	}
-};
+}
 
 export const setting = new Setting();
 
-export const modeThema = {
-	blue: {
+class modeTheme {
+	blue = {
 		colors: {
 			backGround: "#87CEFA",
 			workingArea: "#6495ED",
 			other: "#1E90FF",
+			robotColor: "#FF0000",
 		},
-		ownBoxAreaPosition: { x: 275, y: 0 },
-		shareBoxAreaPosition: { x: 0, y: 0 },
-		footSpotPosition: { x: setting.fieldSize.width - 100, y: 650 },
-		startZonePosition: {
-			x: setting.fieldSize.width - setting.startZone.width,
-			y: setting.fieldSize.height - setting.startZone.height,
-		}
-	},
-	red: {
+		fieldImageSrc: "http://localhost:5173/RoboconFieldBlue.png",
+	};
+	red = {
 		colors: {
 			backGround: "#FFC0CB",
 			workingArea: " 	#FF69B4",
 			other: "#FF0000",
+			robotColor: "#1E90FF",
 		},
-		ownBoxAreaPosition: { x: 0, y: 0 },
-		shareBoxAreaPosition: { x: 465, y: 0 },
-		footSpotPosition: { x: 0, y: 650 },
-		startZonePosition: {
-			x: 0,
-			y: setting.fieldSize.height - setting.startZone.height,
-		}
-	},
-};
+		fieldImageSrc: "http://localhost:5173/RoboconFieldRed.png",
+	};
+}
+
+export const ModeTheme = new modeTheme();
