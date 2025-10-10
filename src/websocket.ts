@@ -34,8 +34,8 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 			set({ status: "CLOSE" });
 		};
 
-		socket.onerror = (err) => {
-			console.error("WebSocket error:", err);
+		socket.onerror = () => {
+			// console.error("WebSocket error:", err);
 			set({ status: "ERROR" });
 		};
 
@@ -47,9 +47,13 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 
 				// data が Position の形をしていると仮定
 				set({ realtimePosition: data });
-			} catch (error) {
-				console.error("Invalid JSON received:", event.data);
 			}
+			finally {
+				console.log("json parse error", event.data);
+			}
+			// catch (error: unknown) {
+			// 	console.log("Invalid JSON received:"+ event.data +error.name);
+			// }
 		};
 	},
 
