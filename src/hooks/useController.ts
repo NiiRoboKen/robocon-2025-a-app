@@ -1,19 +1,24 @@
-import { type Position, setting} from "../controller";
+import { type Position, setting } from "../controller";
 import { create } from "zustand";
 
 interface TargetPositionStoreType {
 	targetPosition: Position;
-	setTargetPosition?: (positionInfomation : Position) => void;
+	setTargetPosition: (positionInfomation: Position) => void;
+	emptyTargetPosition: boolean;
+	setEmptyTargetPosition: (emptyJudge: boolean) => void;
 	show: boolean;
-	setShow?: (showJudge: boolean) => void;
+	setShow: (showJudge: boolean) => void;
 }
 
 export const useController = create<TargetPositionStoreType>((set) => ({
 	targetPosition: setting.defaultRobotPosition,
 	setTargetPosition: (positionInfomation: Position) =>
-		set({ targetPosition: positionInfomation}),
+		set({ targetPosition: positionInfomation }),
+	emptyTargetPosition: false,
+	setEmptyTargetPosition: (emptyJudge: boolean) =>
+		set({ emptyTargetPosition: emptyJudge }),
 	show: false,
-	setShow: (showJudge: boolean) => set({show: showJudge})
+	setShow: (showJudge: boolean) => set({ show: showJudge }),
 }));
 
 type ColorMode = "blue" | "red";
@@ -23,7 +28,7 @@ interface ModeState {
 	toggleMode: () => void;
 }
 
-export const useModeStore = create<ModeState>((set)=> ({
+export const useModeStore = create<ModeState>((set) => ({
 	mode: "blue",
-	toggleMode: () => set((s) => ({mode: s.mode === "blue" ? "red": "blue"})),
-}))
+	toggleMode: () => set((s) => ({ mode: s.mode === "blue" ? "red" : "blue" })),
+}));
