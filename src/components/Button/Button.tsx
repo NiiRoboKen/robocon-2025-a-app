@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 
 type Props = {
-  Children?: ReactNode;
+  children?: ReactNode;
   onClick?: () => void;
 };
 
-export const Button = ({ Children, onClick }: Props) => {
+export const Button = ({ children, onClick }: Props) => {
   return (
     <>
-      <button onClick={onClick}>{Children}</button>
+      <button onClick={onClick}>{children}</button>
     </>
   );
 };
