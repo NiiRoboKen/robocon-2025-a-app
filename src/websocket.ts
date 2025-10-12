@@ -1,16 +1,17 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import { type Position, setting, type Commands } from "./controller.ts";
+import type { Position, Commands } from "./controller.ts";
+import { setting } from "./controller.ts";
 // import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
 	realtimePosition: Position;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
-	sendMessage: (data: Position) => void;
+	sendMessage: (data: Commands) => void;
 	connect: () => void;
 	disconnect: () => void;
-};
+}
 
 export const useWebSocket = create<WebSocketState>((set, get) => ({
 	socket: null,
@@ -51,17 +52,16 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 						y: receivedData.y,
 						theta: receivedData.degree,
 					};
-				set({ realtimePosition: robotLocation});
-				};
+					set({ realtimePosition: robotLocation });
+				}
+			} finally {
+				console.log("json parse error", event.data);
 			}
-			finally {
-			console.log("json parse error", event.data);
-		}
-		// catch (error: unknown) {
-		// 	console.log("Invalid JSON received:"+ event.data +error.name);
-		// }
-	};
-},
+			// catch (error: unknown) {
+			// 	console.log("Invalid JSON received:"+ event.data +error.name);
+			// }
+		};
+	},
 
 	disconnect: () => {
 		const socket = get().socket;
@@ -71,7 +71,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 		}
 	},
 
-	sendMessage: (data: Position) => {
+	sendMessage: (data: Commands) => {
 		const socket = get().socket;
 		if (socket && socket.readyState === WebSocket.OPEN) {
 			socket.send(JSON.stringify(data));
