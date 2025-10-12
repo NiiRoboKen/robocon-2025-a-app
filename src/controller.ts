@@ -1,5 +1,3 @@
-import useImage from "use-image";
-
 export type Field = {
 	x: number;
 	y: number;
