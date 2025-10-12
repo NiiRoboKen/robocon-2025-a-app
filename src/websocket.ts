@@ -1,15 +1,16 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import {type Position, setting } from "./controller";
+import { type Position, setting } from "./controller.ts";
+// import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
-	realtimePosition: Position;
+	realtimePosition: Position ;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
 	sendMessage: (data: Position) => void;
 	connect: () => void;
 	disconnect: () => void;
-}
+};
 
 export const useWebSocket = create<WebSocketState>((set, get) => ({
 	socket: null,
@@ -17,7 +18,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 	status: "CLOSE",
 
 	connect: () => {
-		if (get().socket) return; 
+		if (get().socket) return;
 
 		const socket = new ReconnectingWebSocket("ws://localhost:3000/ws");
 
@@ -33,8 +34,8 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 			set({ status: "CLOSE" });
 		};
 
-		socket.onerror = (err) => {
-			console.error("WebSocket error:", err);
+		socket.onerror = () => {
+			// console.error("WebSocket error:", err);
 			set({ status: "ERROR" });
 		};
 
@@ -46,9 +47,13 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 
 				// data が Position の形をしていると仮定
 				set({ realtimePosition: data });
-			} catch (error) {
-				console.error("Invalid JSON received:", event.data);
 			}
+			finally {
+				console.log("json parse error", event.data);
+			}
+			// catch (error: unknown) {
+			// 	console.log("Invalid JSON received:"+ event.data +error.name);
+			// }
 		};
 	},
 

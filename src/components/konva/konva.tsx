@@ -1,14 +1,29 @@
 import { useRef, useState } from "react";
-import { Stage, Layer, Rect, Line, Circle, Arc , Arrow} from "react-konva";
-import { setting } from "../../controller";
-import { useController } from "../../hooks/useController";
+import {
+	Stage,
+	Layer,
+	Rect,
+	Line,
+	Circle,
+	Arc,
+	Arrow,
+	Image,
+} from "react-konva";
+import { setting, ModeTheme } from "../../controller";
+import { useController, useModeStore } from "../../hooks/useController";
 import { useWebSocket } from "../../websocket";
+import useImage from "use-image";
 
 const Konva = () => {
 	const { targetPosition, setTargetPosition, show, setShow } = useController();
 	const { realtimePosition } = useWebSocket();
 	const [line, setLine] = useState<number[]>();
+	const { mode } = useModeStore();
+	const colorTheme = ModeTheme[mode];
+	const [fieldImage] = useImage(colorTheme.fieldImageSrc);
 	const stageRef = useRef(null);
+
+	// const defaultStartPosition: Position = colorTheme.defaultPosition;
 
 	const handleTouchStart = () => {
 		const touchPosition = stageRef.current?.getPointerPosition();
@@ -16,10 +31,10 @@ const Konva = () => {
 
 		setTargetPosition({
 			x: Math.round(
-				Math.max(Math.min(touchPosition.x, setting.fieldSize.x), 0),
+				Math.max(Math.min(touchPosition.x, setting.fieldSize.width), 0),
 			),
 			y: Math.round(
-				Math.max(Math.min(touchPosition.y, setting.fieldSize.y), 0),
+				Math.max(Math.min(touchPosition.y, setting.fieldSize.height), 0),
 			),
 			theta: realtimePosition.theta,
 		});
@@ -27,8 +42,8 @@ const Konva = () => {
 		setLine([
 			touchPosition.x,
 			touchPosition.y,
-			touchPosition.x + 60 * Math.cos(targetPosition.theta * Math.PI / 180),
-			touchPosition.y + 60 * Math.sin(targetPosition.theta * Math.PI / 180),
+			touchPosition.x + 60 * Math.cos((targetPosition.theta * Math.PI) / 180),
+			touchPosition.y + 60 * Math.sin((targetPosition.theta * Math.PI) / 180),
 		]);
 	};
 
@@ -38,44 +53,27 @@ const Konva = () => {
 
 		const xValue = touchMovePosition.x - targetPosition.x;
 		const yValue = touchMovePosition.y - targetPosition.y;
-		//
+
 		const theta = Math.atan2(yValue, xValue) * (180 / Math.PI);
 		setTargetPosition({ ...targetPosition, theta: Math.round(theta) });
 		const tempArray = line?.slice(0, 2);
 		tempArray.push(touchMovePosition.x, touchMovePosition.y);
 		setLine(tempArray);
-
-		// line.current=[...tempArray, touchMovePosition.x, touchMovePosition.y];
 	};
 
 	return (
 		<Stage
-			width={setting.fieldSize.x}
-			height={setting.fieldSize.y}
+			width={setting.fieldSize.width}
+			height={setting.fieldSize.height}
 			ref={stageRef}
 		>
 			<Layer>
-				<Line
-					points={[
-						0,
-						0,
-						setting.fieldSize.x,
-						0,
-						setting.fieldSize.x,
-						setting.fieldSize.y,
-						0,
-						setting.fieldSize.y,
-						0,
-						0,
-					]}
-					stroke="black"
-				/>
-
-				<Rect //touch field
+				<Image
+					image={fieldImage}
 					x={0}
 					y={0}
-					width={setting.fieldSize.x}
-					height={setting.fieldSize.y}
+					width={setting.fieldSize.width}
+					height={setting.fieldSize.height}
 					onTouchStart={handleTouchStart}
 					onTouchMove={handleTouchMove}
 				/>
@@ -88,11 +86,13 @@ const Konva = () => {
 					shadowEnabled={false}
 					width={100}
 					height={100}
-					fill="red"
+					fill={colorTheme.colors.robotColor}
 					shadowBlur={10}
 					strokeWidth={5}
 					stroke={"Black"}
+					draggable
 				/>
+
 				<Circle
 					radius={20}
 					x={targetPosition.x}
@@ -109,6 +109,23 @@ const Konva = () => {
 					outerRadius={30}
 					fill="Blue"
 					fillEnabled={show}
+				/>
+
+				<Line
+					points={[
+						0,
+						0,
+						setting.fieldSize.width,
+						0,
+						setting.fieldSize.width,
+						setting.fieldSize.height,
+						0,
+						setting.fieldSize.height,
+						0,
+						0,
+					]}
+					stroke={colorTheme.colors.other}
+					strokeWidth={5}
 				/>
 			</Layer>
 		</Stage>
