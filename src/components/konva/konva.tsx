@@ -17,7 +17,7 @@ import useImage from "use-image";
 const Konva = () => {
 	const { targetPosition, setTargetPosition, show, setShow } = useController();
 	const { realtimePosition } = useWebSocket();
-	const [line, setLine] = useState<number[]>();
+	const [line, setLine] = useState<number[]>([0, 0, 0, 0]);
 	const { mode } = useModeStore();
 	const colorTheme = ModeTheme[mode];
 	const [fieldImage] = useImage(colorTheme.fieldImageSrc);
