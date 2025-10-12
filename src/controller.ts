@@ -53,3 +53,40 @@ class modeTheme {
 }
 
 export const ModeTheme = new modeTheme();
+
+export type Commands =
+	| Pong
+	| SetLocation
+	| CurrentLocation
+	| LeftArmMove
+	| RightArmMove;
+
+export type BoxSize = "A" | "B" | "C" | "D" | "E";
+
+export type Pong = {
+	command: "pong";
+};
+
+export type SetLocation = {
+	command: "set_location";
+	x: number;
+	y: number;
+	degree: number;
+};
+
+export type CurrentLocation = {
+	command: "current_location";
+	x: number;
+	y: number;
+	degree: number;
+};
+
+export type LeftArmMove = {
+	command: "left_arm_move";
+	box: BoxSize;
+};
+
+export type RightArmMove = {
+	command: "right_arm_move";
+	box: BoxSize;
+};
