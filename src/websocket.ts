@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import { type Position, setting } from "./controller.ts";
+import { type Position, setting, type Commands } from "./controller.ts";
 // import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
-	realtimePosition: Position ;
+	realtimePosition: Position;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
 	sendMessage: (data: Position) => void;
@@ -42,20 +42,26 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 		socket.onmessage = (event) => {
 			console.log("Received:", event.data);
 			try {
-				const data = JSON.parse(event.data); // ← ここがポイント！
-				console.log("Received:", data);
+				const receivedData: Commands = JSON.parse(event.data); // ← ここがポイント！
+				console.log("Received:", receivedData);
 
-				// data が Position の形をしていると仮定
-				set({ realtimePosition: data });
+				if (receivedData.command == "current_location") {
+					const robotLocation: Position = {
+						x: receivedData.x,
+						y: receivedData.y,
+						theta: receivedData.degree,
+					};
+				set({ realtimePosition: robotLocation});
+				};
 			}
 			finally {
-				console.log("json parse error", event.data);
-			}
-			// catch (error: unknown) {
-			// 	console.log("Invalid JSON received:"+ event.data +error.name);
-			// }
-		};
-	},
+			console.log("json parse error", event.data);
+		}
+		// catch (error: unknown) {
+		// 	console.log("Invalid JSON received:"+ event.data +error.name);
+		// }
+	};
+},
 
 	disconnect: () => {
 		const socket = get().socket;
