@@ -6,6 +6,7 @@ import { setting } from "./controller.ts";
 
 interface WebSocketState {
 	realtimeStatus: Status;
+	espConnecting: boolean;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
 	sendMessage: (data: Commands) => void;
@@ -15,13 +16,14 @@ interface WebSocketState {
 
 export const useWebSocket = create<WebSocketState>((set, get) => ({
 	socket: null,
+	espConnecting: false,
 	realtimeStatus: {
 		x:
 			setting.fieldSizeScale.width *
 			(setting.defaultRobotPosition.x / setting.fieldSize.width),
 		y:
 			setting.fieldSizeScale.height *
-			((setting.defaultRobotPosition.y) / setting.fieldSize.height),
+			(setting.defaultRobotPosition.y / setting.fieldSize.height),
 		theta: setting.defaultRobotPosition.theta,
 	},
 	status: "CLOSE",
@@ -54,13 +56,23 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 				const receivedData: Commands = JSON.parse(event.data); // ← ここがポイント！
 				console.log("Received:", receivedData);
 
-				if (receivedData.command == "current_location") {
-					const robotStatus: Status = {
-						x: (100 * receivedData.x) / setting.fieldSize.width,
-						y: (100 * receivedData.y) / setting.fieldSize.width,
-						theta: receivedData.degree,
-					};
-					set({ realtimeStatus: robotStatus });
+				switch (receivedData.command) {
+					case "set_location":
+						set({
+							realtimeStatus: {
+								x: (100 * receivedData.x) / setting.fieldSize.width,
+								y: (100 * receivedData.y) / setting.fieldSize.width,
+								theta: receivedData.degree,
+							},
+						});
+						break;
+					case "connection_failed": {
+						set({ espConnecting: false });
+						break;
+					}
+					case "connection_success": {
+						set({ espConnecting: true });
+					}
 				}
 			} finally {
 				console.log("json parse error", event.data);

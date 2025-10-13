@@ -63,16 +63,21 @@ class modeTheme {
 export const ModeTheme = new modeTheme();
 
 export type Commands =
-	| Pong
 	| SetLocation
 	| CurrentLocation
 	| LeftArmMove
-	| RightArmMove;
+	| RightArmMove
+	| ConnectionSuccess
+	| ConnectionFailed;
 
 export type BoxSize = "A" | "B" | "C" | "D" | "E";
 
-export type Pong = {
-	command: "pong";
+export type ConnectionSuccess = {
+	command: "connection_success";
+};
+
+export type ConnectionFailed = {
+	command: "connection_failed";
 };
 
 export type SetLocation = {
