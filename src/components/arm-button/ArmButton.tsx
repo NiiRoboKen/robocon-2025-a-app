@@ -15,16 +15,12 @@ const ArmButton = () => {
 
 	const BoxButtons = boxList.map((n) => {
 		return (
-			<div>
-			<Button key={n} onClick={() => handleLeftClick(n)}>
-			Box {n}
-			</Button>
-				<Button key={n} onClick={() => handleRightClick(n)}>
-					Box {n}
-				</Button>
+			<div key={n}>
+				<Button onClick={() => handleLeftClick(n)}>Box {n}</Button>
+				<Button onClick={() => handleRightClick(n)}>Box {n}</Button>
 			</div>
 		);
 	});
-	return (<div>{BoxButtons}</div>);
+	return <div>{BoxButtons}</div>;
 };
 export default ArmButton;
