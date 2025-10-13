@@ -4,7 +4,8 @@ import Information from "./components/information/Information.tsx";
 import { useWebSocket } from "./websocket";
 import ChangeThemeButton from "./components/change-theme-button/ChangeThemeButton.tsx";
 import SendButton from "./components/send-button/SendButton.tsx";
-import ArmButton from "./components/arm-button/ArmButton.tsx"
+import ArmButton from "./components/arm-button/ArmButton.tsx";
+import "./App.css"
 
 const App = () => {
 	const { connect, disconnect } = useWebSocket();
@@ -15,12 +16,14 @@ const App = () => {
 	}, [connect, disconnect]);
 
 	return (
-		<div>
-			<Information />
-			<ArmButton />
-			<SendButton />
-			<ChangeThemeButton />
+		<div className="buttons">
 			<Konva />
+			<div>
+				<Information />
+				<ArmButton />
+				<SendButton />
+				<ChangeThemeButton />
+			</div>
 		</div>
 	);
 };
