@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import type { Position, Commands } from "./controller.ts";
+import type { Status, Commands } from "./controller.ts";
 import { setting } from "./controller.ts";
 // import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
-	realtimePosition: Position;
+	realtimeStatus: Status;
 	status: "ERROR" | "CONNECTTING" | "CLOSE";
 	socket: ReconnectingWebSocket | null;
 	sendMessage: (data: Commands) => void;
@@ -15,7 +15,15 @@ interface WebSocketState {
 
 export const useWebSocket = create<WebSocketState>((set, get) => ({
 	socket: null,
-	realtimePosition: setting.defaultRobotPosition,
+	realtimeStatus: {
+		x:
+			setting.fieldSizeScale.width *
+			(setting.defaultRobotPosition.x / setting.fieldSize.width),
+		y:
+			setting.fieldSizeScale.height *
+			((setting.defaultRobotPosition.y) / setting.fieldSize.height),
+		theta: setting.defaultRobotPosition.theta,
+	},
 	status: "CLOSE",
 
 	connect: () => {
@@ -47,12 +55,12 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 				console.log("Received:", receivedData);
 
 				if (receivedData.command == "current_location") {
-					const robotLocation: Position = {
-						x: receivedData.x,
-						y: receivedData.y,
+					const robotStatus: Status = {
+						x: (100 * receivedData.x) / setting.fieldSize.width,
+						y: (100 * receivedData.y) / setting.fieldSize.width,
 						theta: receivedData.degree,
 					};
-					set({ realtimePosition: robotLocation });
+					set({ realtimeStatus: robotStatus });
 				}
 			} finally {
 				console.log("json parse error", event.data);

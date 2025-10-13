@@ -1,9 +1,9 @@
-export type Field = {
+export type Position = {
 	x: number;
 	y: number;
 };
 
-export type Position = Field & {
+export type Status = Position & {
 	theta: number;
 };
 
@@ -11,18 +11,28 @@ class Setting {
 	fieldSize = { width: 525, height: 1050 };
 	robotSize = { width: 100, height: 100 };
 
-	ownBoxArea = { width: 250, height: 200 };
-	shareBoxArea = { width: 60, height: 370 };
-	workingArea = { width: 525, height: 500, x: 0, y: 550 };
-	gateArea = { width: 525, height: 100, x: 0, y: 650 };
-	footSpot = { width: 100, height: 100 };
-	startZone = { width: 100, height: 100 };
-
 	get defaultRobotPosition() {
 		return {
 			x: this.fieldSize.width / 2 - this.robotSize.width / 2,
 			y: this.fieldSize.height - this.robotSize.height,
 			theta: 0,
+		};
+	}
+	get fieldSizeScale() {
+		return {
+			width:
+				(window.innerHeight * this.fieldSize.width) / this.fieldSize.height,
+			height: window.innerHeight,
+		};
+	}
+	get robotSizeScale() {
+		return {
+			width:
+				(this.fieldSizeScale.width * this.robotSize.width) /
+				this.fieldSize.width,
+			height:
+				(this.fieldSizeScale.height * this.robotSize.height) /
+				this.fieldSize.height,
 		};
 	}
 }
