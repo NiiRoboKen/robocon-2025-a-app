@@ -1,10 +1,10 @@
 import { Button } from "../Button/Button.tsx";
 import { useWebSocket } from "../../websocket.ts";
-import type { BoxSize } from "../../controller.ts";
+import type { BoxSize } from "../../commandsType.ts";
 
 const ArmButton = () => {
 	const boxList: BoxSize[] = ["A", "B", "C", "D", "E"];
-	const { sendMessage } = useWebSocket();
+	const { sendMessage } = useWebSocket.getState();
 
 	const handleLeftClick = (BoxType: BoxSize) => {
 		sendMessage({ command: "left_arm_move", box: BoxType });
