@@ -5,6 +5,7 @@ import { useWebSocket } from "./websocket";
 import ChangeThemeButton from "./components/change-theme-button/ChangeThemeButton.tsx";
 import SendButton from "./components/send-button/SendButton.tsx";
 import ArmButton from "./components/arm-button/ArmButton.tsx";
+import EspConnectingInfo from "./components/esp-connecting-info/EspConnectingInfo.tsx"
 import "./App.css"
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
 			<Konva />
 			<div>
 				<Information />
+				<EspConnectingInfo /> 
 				<ArmButton />
 				<SendButton />
 				<ChangeThemeButton />
