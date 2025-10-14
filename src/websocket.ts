@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import type { Status, Commands } from "./controller.ts";
+import type { Status } from "./controller.ts";
 import { setting } from "./controller.ts";
+import type { Commands } from "./commandsType.ts";
 // import { useModeStore } from "./hooks/useController";
 
 interface WebSocketState {
