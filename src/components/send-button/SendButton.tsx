@@ -1,11 +1,11 @@
 import { useWebSocket } from "../../websocket.ts";
 import { useController } from "../../hooks/useController.ts";
-import type { Commands } from "../../controller.ts";
+import type { Commands } from "../../commandsType.ts";
 import "./SendButton.css";
 
 const SendButton = () => {
-	const { targetPosition, show, setShow } = useController();
-	const { sendMessage } = useWebSocket();
+	const { targetPosition, show, setShow, theta } = useController();
+	const { sendMessage } = useWebSocket.getState();
 
 	const handleSendClick = () => {
 		if (show) {
@@ -13,7 +13,7 @@ const SendButton = () => {
 				command: "set_location",
 				x: targetPosition.x,
 				y: targetPosition.y,
-				degree: targetPosition.theta
+				degree: theta,
 			};
 			sendMessage(sendData);
 		}
