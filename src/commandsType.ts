@@ -10,7 +10,7 @@ export type Commands =
 	| RightArmFoldUpper
 	| LeftArmFoldLower
 	| RightArmFoldLower
-	| ArmSuctionOnOff
+	| ArmSuctionOnOff //吸引
 	| EmergencyStop
 	| SideArmOpen
 	| SideArmOpenMax

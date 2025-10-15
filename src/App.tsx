@@ -5,8 +5,12 @@ import { useWebSocket } from "./websocket";
 import ChangeThemeButton from "./components/change-theme-button/ChangeThemeButton.tsx";
 import SendButton from "./components/send-button/SendButton.tsx";
 import ArmButton from "./components/arm-button/ArmButton.tsx";
-import EspConnectingInfo from "./components/esp-connecting-info/EspConnectingInfo.tsx"
-import "./App.css"
+import EspConnectingInfo from "./components/esp-connecting-info/EspConnectingInfo.tsx";
+import SideArm from "./components/side-arm/SideArm.tsx";
+import StopButton from "./components/stop-button/StopButton.tsx";
+import FrontArmButtons from "./components/front-arms-buttons/FrontArmButtons.tsx";
+import "./App.css";
+import Preset from "./components/preset/Preset.tsx";
 
 const App = () => {
 	const { connect, disconnect } = useWebSocket();
@@ -21,10 +25,14 @@ const App = () => {
 			<Konva />
 			<div>
 				<Information />
-				<EspConnectingInfo /> 
+				<EspConnectingInfo />
 				<ArmButton />
 				<SendButton />
 				<ChangeThemeButton />
+				<SideArm />
+				<StopButton />
+				<FrontArmButtons />
+				<Preset />
 			</div>
 		</div>
 	);
