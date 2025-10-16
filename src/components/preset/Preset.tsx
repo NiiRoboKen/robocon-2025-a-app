@@ -7,14 +7,14 @@ const { sendMessage } = useWebSocket.getState();
 
 const StartButton = () => {
   return (
-    <Button className="Preset" onClick={() => SendMessage({ command: "" })}>
+    <Button className="Preset" onClick={() => sendMessage({ command: "" })}>
       スタート
     </Button>
   );
 };
 const PylonCompletion = () => {
   return (
-    <Button className="Preset" onClick={() => SendMessage({ command: "" })}>
+    <Button className="Preset" onClick={() => sendMessage({ command: "" })}>
       パイロン完了
     </Button>
   );
@@ -28,7 +28,7 @@ const HangCeilingButton = () => {
 };
 const EndFrontArm = () => {
   return (
-    <Button className="Preset" onClick={() => SendMessage({ command: "" })}>
+    <Button className="Preset" onClick={() => sendMessage({ command: "" })}>
       フロントアーム終わり
     </Button>
   );
