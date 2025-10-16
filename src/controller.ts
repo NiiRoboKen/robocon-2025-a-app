@@ -8,8 +8,8 @@ export type Status = Position & {
 };
 
 class Setting {
-	fieldSize = { width: 525, height: 1050 };
-	robotSize = { width: 100, height: 100 };
+	fieldSize = { width: 5250, height: 10500 };
+	robotSize = { width: 1000, height: 1000 };
 
 	get defaultRobotPosition() {
 		return {

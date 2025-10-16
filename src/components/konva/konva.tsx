@@ -19,7 +19,6 @@ const SetLocation = () => {
 	const {
 		targetPosition,
 		setTargetPosition,
-		targetPositionScale,
 		setTargetPositionScale,
 		theta,
 		setTheta,
