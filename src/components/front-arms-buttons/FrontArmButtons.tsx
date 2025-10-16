@@ -28,28 +28,28 @@ const FoldButton = () => {
 };
 const RightSuctionOnButton = () => {
   return (
-    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+    <Button className="Suction" onClick={() => sendMessage({ command: "right_arm_fold_upper" })}>
       吸引On 右
     </Button>
   );
 };
 const RighSuctiontOffButton = () => {
   return (
-    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+    <Button className="Suction" onClick={() => sendMessage({ command: "right_arm_fold_lower" })}>
       吸引Off 右
     </Button>
   );
 };
 const LeftSuctionOnButton = () => {
   return (
-    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+    <Button className="Suction" onClick={() => sendMessage({ command: "left_arm_fold_upper" })}>
       吸引On 左
     </Button>
   );
 };
 const LeftSuncitonOffButton = () => {
   return (
-    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+    <Button className="Suction" onClick={() => sendMessage({ command: "left_arm_fold_lower" })}>
       吸引Off 左
     </Button>
   );

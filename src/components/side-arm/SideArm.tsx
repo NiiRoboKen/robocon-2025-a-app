@@ -6,59 +6,60 @@ import "./SideArm.css";
 const { sendMessage } = useWebSocket.getState();
 
 const RightSideArmOpen = () => {
-  return (
-    <Button className="SideArm" onClick={() => sendMessage({ command: "" })}>
+	return (
+		<Button className="SideArm" onClick={() => sendMessage({
+			command: "right_side_arm_open" })}>
       展開 右
-    </Button>
+    </Button >
   );
 };
 const LeftSideArmOpen = () => {
-  return (
-    <Button className="SideArm" onClick={() => sendMessage({ command: "" })}>
-      展開 左
-    </Button>
-  );
+	return (
+		<Button className="SideArm" onClick={() => sendMessage({ command: "left_side_arm_open" })}>
+			展開 左
+		</Button>
+	);
 };
 
 const RightSideArmClose = () => {
-  return (
-    <Button className="SideArm" onClick={() => sendMessage({ command: "" })}>
-      収納 右
-    </Button>
-  );
+	return (
+		<Button className="SideArm" onClick={() => sendMessage({ command: "right_arm_fold_upper" })}>
+			収納 右
+		</Button>
+	);
 };
 const LeftSideArmClose = () => {
-  return (
-    <Button className="SideArm" onClick={() => sendMessage({ command: "" })}>
-      収納 左
-    </Button>
-  );
+	return (
+		<Button className="SideArm" onClick={() => sendMessage({ command: "left_arm_fold_upper" })}>
+			収納 左
+		</Button>
+	);
 };
 const AllArmClose = () => {
-  return (
-    <Button className="AllClose" onClick={() => sendMessage({ command: "" })}>
-      全収納
-    </Button>
-  );
+	return (
+		<Button className="AllClose" onClick={() => sendMessage({ command: "all_side_arm_fold" })}>
+			全収納
+		</Button>
+	);
 };
 
 const SideArm = () => {
-  return (
-    <div>
-      <VStack p={5}>
-        <h3>サイドアーム</h3>
+	return (
+		<div>
+			<VStack p={5}>
+				<h3>サイドアーム</h3>
 
-        <HStack>
-          <LeftSideArmOpen />
-          <RightSideArmOpen />
-        </HStack>
-        <HStack>
-          <LeftSideArmClose />
-          <RightSideArmClose />
-        </HStack>
-        <AllArmClose />
-      </VStack>
-    </div>
-  );
+				<HStack>
+					<LeftSideArmOpen />
+					<RightSideArmOpen />
+				</HStack>
+				<HStack>
+					<LeftSideArmClose />
+					<RightSideArmClose />
+				</HStack>
+				<AllArmClose />
+			</VStack>
+		</div>
+	);
 };
 export default SideArm;
