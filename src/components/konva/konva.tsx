@@ -1,3 +1,4 @@
+import Konva from "konva"
 import { useRef, useState } from "react";
 import {
 	Stage,
@@ -14,7 +15,7 @@ import { useController, useModeStore } from "../../hooks/useController";
 import { useWebSocket } from "../../websocket";
 import useImage from "use-image";
 
-const Konva = () => {
+const SetLocation = () => {
 	const {
 		targetPosition,
 		setTargetPosition,
@@ -30,7 +31,7 @@ const Konva = () => {
 	const { mode } = useModeStore();
 	const colorTheme = ModeTheme[mode];
 	const [fieldImage] = useImage(colorTheme.fieldImageSrc);
-	const stageRef = useRef(null);
+	const stageRef = useRef<Konva.Stage | null>(null);
 
 	// const defaultStartPosition: Position = colorTheme.defaultPosition;
 
@@ -134,4 +135,4 @@ const Konva = () => {
 	);
 };
 
-export default Konva;
+export default SetLocation;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Konva from "./components/konva/konva.tsx";
+import SetLocation from "./components/konva/konva.tsx";
 import { useWebSocket } from "./websocket";
 import ChangeThemeButton from "./components/change-theme-button/ChangeThemeButton.tsx";
 import SendButton from "./components/send-button/SendButton.tsx";
@@ -34,7 +34,7 @@ const App = () => {
             <SendButton />
             <ChangeThemeButton />
           </HStack>
-          <Konva />
+          <SetLocation />
         </VStack>
 
         <div>
