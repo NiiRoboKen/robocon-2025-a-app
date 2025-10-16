@@ -11,31 +11,45 @@ import StopButton from "./components/stop-button/StopButton.tsx";
 import FrontArmButtons from "./components/front-arms-buttons/FrontArmButtons.tsx";
 import "./App.css";
 import Preset from "./components/preset/Preset.tsx";
+import {
+  Box,
+  ChakraProvider,
+  defaultSystem,
+  HStack,
+  VStack,
+} from "@chakra-ui/react";
 
 const App = () => {
-	const { connect, disconnect } = useWebSocket();
+  const { connect, disconnect } = useWebSocket();
 
-	useEffect(() => {
-		connect();
-		return () => disconnect();
-	}, [connect, disconnect]);
+  useEffect(() => {
+    connect();
+    return () => disconnect();
+  }, [connect, disconnect]);
 
-	return (
-		<div className="buttons">
-			<Konva />
-			<div>
-				<Information />
-				<EspConnectingInfo />
-				<ArmButton />
-				<SendButton />
-				<ChangeThemeButton />
-				<SideArm />
-				<StopButton />
-				<FrontArmButtons />
-				<Preset />
-			</div>
-		</div>
-	);
+  return (
+    <ChakraProvider value={defaultSystem}>
+      <div className="buttons">
+        <VStack>
+          <HStack>
+            <StopButton />
+            <EspConnectingInfo />
+            <SendButton />
+            <ChangeThemeButton />
+          </HStack>
+          <Konva />
+        </VStack>
+
+        <div>
+          <VStack>
+            <SideArm />
+            <FrontArmButtons />
+          </VStack>
+        </div>
+        <Preset />
+      </div>
+    </ChakraProvider>
+  );
 };
 
 export default App;

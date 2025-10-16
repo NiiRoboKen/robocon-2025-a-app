@@ -1,57 +1,83 @@
+import { HStack, VStack } from "@chakra-ui/react";
 import { useWebSocket } from "../../websocket.ts";
 import { Button } from "../Button/Button";
+import "./FrontArmButton.css";
 
 const { sendMessage } = useWebSocket.getState();
 
 const CollectModeButton = () => {
-	return (
-		<Button onClick={() => sendMessage({ command: "" })}>回収モード</Button>
-	);
+  return (
+    <Button className="FrontArm" onClick={() => sendMessage({ command: "" })}>
+      回収モード
+    </Button>
+  );
 };
 const HangCeilingButton = () => {
-	return (
-		<Button onClick={() => sendMessage({ command: "" })}>天井セット</Button>
-	);
+  return (
+    <Button className="FrontArm" onClick={() => sendMessage({ command: "" })}>
+      天井セット
+    </Button>
+  );
 };
 const FoldButton = () => {
-	return (
-		<Button onClick={() => sendMessage({ command: "" })}>収納　前</Button>
-	);
+  return (
+    <Button className="FrontArm" onClick={() => sendMessage({ command: "" })}>
+      収納　前
+    </Button>
+  );
 };
 const RightSuctionOnButton = () => {
-	return (
-		<Button onClick={() => sendMessage({command: ""})}>吸引On 右</Button>
-	);
+  return (
+    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+      吸引On 右
+    </Button>
+  );
 };
 const RighSuctiontOffButton = () => {
-	return (
-		<Button onClick={() => sendMessage({command: ""})}>吸引Off 右</Button>
-	);
-}
+  return (
+    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+      吸引Off 右
+    </Button>
+  );
+};
 const LeftSuctionOnButton = () => {
-	return (
-		<Button onClick={() => sendMessage({command: ""})}>吸引On 左</Button>
-	);
+  return (
+    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+      吸引On 左
+    </Button>
+  );
 };
 const LeftSuncitonOffButton = () => {
-	return (
-		<Button onClick={() => sendMessage({command: ""})}>吸引Off 左</Button>
-	);
-}
+  return (
+    <Button className="Suction" onClick={() => sendMessage({ command: "" })}>
+      吸引Off 左
+    </Button>
+  );
+};
 
 const FrontArmButtons = () => {
-	return (
-		<div>
-			<h3>フロントアーム</h3>
-			<CollectModeButton />
-			<HangCeilingButton />
-			<FoldButton />
-			<RightSuctionOnButton />
-			<RighSuctiontOffButton />
-			<LeftSuctionOnButton />
-			<LeftSuncitonOffButton />
-		</div>
-	);
+  return (
+    <div>
+      <VStack p={5}>
+        <h2>フロントアーム</h2>
+
+        <CollectModeButton />
+        <HangCeilingButton />
+        <FoldButton />
+      </VStack>
+
+      <VStack p={5}>
+        <HStack>
+          <RightSuctionOnButton />
+          <LeftSuctionOnButton />
+        </HStack>
+        <HStack>
+          <RighSuctiontOffButton />
+          <LeftSuncitonOffButton />
+        </HStack>
+      </VStack>
+    </div>
+  );
 };
 
 export default FrontArmButtons;
