@@ -60,8 +60,8 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 					case "set_location":
 						set({
 							realtimeStatus: {
-								x: (100 * receivedData.x) / setting.fieldSize.width,
-								y: (100 * receivedData.y) / setting.fieldSize.width,
+								x: receivedData.x / setting.fieldSize.width,
+								y: receivedData.y / setting.fieldSize.width,
 								theta: receivedData.degree,
 							},
 						});

@@ -81,8 +81,8 @@ const SetLocation = () => {
 				/>
 
 				<Rect //realtime robot
-					x={realtimeStatus.x}
-					y={realtimeStatus.y}
+					x={realtimeStatus.x * setting.fieldSizeScale.width}
+					y={realtimeStatus.y * setting.fieldSizeScale.height}
 					rotation={realtimeStatus.theta}
 					opacity={0.3}
 					shadowEnabled={false}
