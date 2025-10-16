@@ -67,11 +67,11 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 							},
 						});
 						break;
-					case "connection_failed": {
+					case "receive_failed": {
 						set({ espConnecting: false });
 						break;
 					}
-					case "connection_success": {
+					case "receive_success": {
 						set({ espConnecting: true });
 					}
 				}
