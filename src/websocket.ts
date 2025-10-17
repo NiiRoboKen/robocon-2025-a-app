@@ -79,7 +79,11 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 						break;
 				}
 			} catch (error) {
-				console.log("Invalid JSON received:" + event.data + error.name);
+				if (error instanceof Error) {
+					console.log("Invalid JSON received:", event.data, error.name);
+				} else {
+					console.log("Invalid JSON received:", event.data, error);
+				}
 			} finally {
 				console.log("json parse error");
 			}
