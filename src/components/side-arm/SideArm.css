@@ -10,3 +10,20 @@
   color: #fff;
   background-color: navy;
 }
+.LeftDiv {
+  position: relative;
+  border: 2px solid navy; /* 枠の太さ・種類・色 */
+  border-radius: 4px; /* 枠の丸み */
+  margin: 0.9em 0.2em; /* 枠外の余白 */
+  padding: 5px 5px;
+}
+
+.title {
+  position: absolute;
+  padding: 0 0.5em;
+  top: -23px; /* タイトルの位置を調整 */
+  color: black; /* タイトルの文字色 */
+  font-weight: bold;
+  font-size: 2em; /* タイトルの文字サイズ */
+  background-color: #ffffff;
+}

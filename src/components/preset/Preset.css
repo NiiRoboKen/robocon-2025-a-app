@@ -4,3 +4,10 @@
   background-color: orangered;
   color: #fff;
 }
+.RightDiv {
+  position: relative;
+  border: 2px solid orangered; /* 枠の太さ・種類・色 */
+  border-radius: 4px; /* 枠の丸み */
+  margin: 0.9em 0.2em; /* 枠外の余白 */
+  padding: 5px 5px;
+}
