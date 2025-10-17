@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+// import { Box } from "@chakra-ui/react";
 import { useWebSocket } from "../../websocket.ts";
 import "./EspConnectingInfo.css";
 
