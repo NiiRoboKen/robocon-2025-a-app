@@ -48,7 +48,7 @@ class modeTheme {
 			other: "#1E90FF",
 			robotColor: "#FF0000",
 		},
-		fieldImageSrc: "http://localhost:5173/RoboconFieldBlue.png",
+		fieldImageSrc: "/RoboconFieldBlue.png",
 	};
 	red = {
 		colors: {
@@ -57,7 +57,7 @@ class modeTheme {
 			other: "#FF0000",
 			robotColor: "#1E90FF",
 		},
-		fieldImageSrc: "http://localhost:5173/RoboconFieldRed.png",
+		fieldImageSrc: "/RoboconFieldRed.png",
 	};
 }
 
