@@ -21,8 +21,9 @@ class Setting {
 	get fieldSizeScale() {
 		return {
 			width:
-				(window.innerHeight * this.fieldSize.width) / this.fieldSize.height,
-			height: window.innerHeight,
+				(window.innerHeight * 0.9 * this.fieldSize.width) /
+				this.fieldSize.height,
+			height: window.innerHeight * 0.9,
 		};
 	}
 	get robotSizeScale() {
