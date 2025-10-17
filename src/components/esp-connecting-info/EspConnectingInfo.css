@@ -1,0 +1,18 @@
+.esp {
+  position: relative;
+  border: 2px solid brown; /* 枠の太さ・種類・色 */
+  border-radius: 4px; /* 枠の丸み */
+  /* 枠外の余白 */
+  padding: 5px 15px;
+}
+
+.espStatus {
+  position: absolute;
+  padding: 0 0.5em;
+  top: -13px; /* タイトルの位置を調整 */
+  left: 39px;
+  color: black; /* タイトルの文字色 */
+  font-weight: bold;
+  font-size: 0.9em; /* タイトルの文字サイズ */
+  background-color: #ffffff;
+}

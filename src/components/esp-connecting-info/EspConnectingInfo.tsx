@@ -1,4 +1,6 @@
+import { Box } from "@chakra-ui/react";
 import { useWebSocket } from "../../websocket.ts";
+import "./EspConnectingInfo.css";
 
 const EspConnectingInfo = () => {
   const { espConnecting } = useWebSocket();
@@ -8,15 +10,17 @@ const EspConnectingInfo = () => {
 
   if (espConnecting == true) {
     return (
-      <>
-        <p>espと通信可能です</p>
-      </>
+      <div className="esp">
+        <p className="espStatus">esp status</p>
+        <p>通信可能です</p>
+      </div>
     );
   } else {
     return (
-      <>
-        <p>espが接続されていません</p>
-      </>
+      <div className="esp">
+        <p className="espStatus">esp status</p>
+        <p>接続されていません</p>
+      </div>
     );
   }
 };

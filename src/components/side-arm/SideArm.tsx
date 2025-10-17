@@ -63,7 +63,7 @@ const AllArmClose = () => {
 const SideArm = () => {
   return (
     <div className="LeftDiv">
-      <VStack p={5}>
+      <VStack paddingY={5} paddingX={2}>
         <h2 className="title">サイドアーム</h2>
 
         <HStack>
