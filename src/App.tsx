@@ -16,6 +16,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+import WebSocketConnecting from "./components/websocket-connectiong/WebSocketConnecting.tsx";
+
 const App = () => {
   const { connect, disconnect } = useWebSocket();
 
@@ -30,7 +32,6 @@ const App = () => {
         <VStack>
           <HStack>
             <StopButton />
-            <EspConnectingInfo />
             <SendButton />
             <ChangeThemeButton />
           </HStack>
@@ -43,7 +44,13 @@ const App = () => {
             <FrontArmButtons />
           </VStack>
         </div>
-        <Preset />
+        <VStack>
+          <HStack p={4}>
+            <EspConnectingInfo />
+            <WebSocketConnecting />
+          </HStack>
+          <Preset />
+        </VStack>
       </div>
     </ChakraProvider>
   );

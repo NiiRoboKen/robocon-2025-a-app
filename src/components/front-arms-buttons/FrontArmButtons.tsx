@@ -87,7 +87,7 @@ const LeftSuncitonOffButton = () => {
 const FrontArmButtons = () => {
   return (
     <div className="LeftDiv">
-      <VStack p={5}>
+      <VStack paddingY={5}>
         <h2 className="title">フロントアーム</h2>
 
         <CollectModeButton />
@@ -95,7 +95,7 @@ const FrontArmButtons = () => {
         <FoldButton />
       </VStack>
 
-      <VStack p={5}>
+      <VStack paddingY={5} paddingX={2}>
         <HStack>
           <RightSuctionOnButton />
           <LeftSuctionOnButton />

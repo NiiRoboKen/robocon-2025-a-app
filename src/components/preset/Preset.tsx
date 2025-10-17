@@ -70,21 +70,21 @@ const BoxMountCompletion = () => {
 const Preset = () => {
   return (
     <div className="RightDiv">
-      <VStack p={5}>
+      <VStack paddingY={5} paddingX={2}>
         <h2 className="title">プリセット</h2>
-        <Box p={5}>
+        <Box paddingY={5}>
           <StartButton />
         </Box>
-        <Box p={5}>
+        <Box paddingY={5}>
           <PylonCompletion />
         </Box>
-        <Box p={5}>
+        <Box paddingY={5}>
           <HangCeilingButton />
         </Box>
-        <Box p={5}>
+        <Box paddingY={5}>
           <EndFrontArm />
         </Box>
-        <Box p={5}>
+        <Box paddingY={5}>
           <BoxMountCompletion />
         </Box>
       </VStack>
