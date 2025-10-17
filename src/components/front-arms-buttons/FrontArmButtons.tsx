@@ -64,7 +64,7 @@ const LeftSuctionOnButton = () => {
     <Button
       className="Suction"
       onClick={() =>
-        sendMessage({ command: "left_arm_suction_on_off", is_on: true })
+        sendMessage({ command: "right_arm_suction_on_off", is_on: true })
       }
     >
       吸引On 左
@@ -76,7 +76,7 @@ const LeftSuncitonOffButton = () => {
     <Button
       className="Suction"
       onClick={() =>
-        sendMessage({ command: "left_arm_suction_on_off", is_on: false })
+        sendMessage({ command: "right_arm_suction_on_off", is_on: false })
       }
     >
       吸引Off 左
