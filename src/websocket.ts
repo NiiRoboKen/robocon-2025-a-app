@@ -54,7 +54,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 			// console.log("Received:", event.data);
 			try {
 				const receivedData = JSON.parse(event.data);
-				// console.log("Received:", receivedData);
+				console.log("Received:", receivedData);
 
 				switch (receivedData.command) {
 					case "set_location":
