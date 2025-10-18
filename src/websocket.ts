@@ -31,7 +31,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 	connect: () => {
 		if (get().socket) return;
 
-		const socket = new ReconnectingWebSocket("ws://localhost:3000/ws");
+		const socket = new ReconnectingWebSocket("ws://192.168.11.10/");
 
 		socket.onopen = () => {
 			console.log("WebSocket connected");
