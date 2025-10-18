@@ -52,7 +52,6 @@ const AllArmClose = () => {
       className="AllClose"
       onClick={() => {
         sendMessage({ command: "all_side_arm_fold" });
-        sendMessage({ command: "all_arm_fold_lower" });
       }}
     >
       全収納
