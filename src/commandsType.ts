@@ -30,7 +30,7 @@ export type Commands =
 
 
 export type ReceiveSuccess = {
-  command: "receive_success",
+  command: "connection_success",
 }
 
 export type Ping = {
@@ -38,7 +38,7 @@ export type Ping = {
 }
 
 export type ReceiveFailed = {
-  command: "receive_failed",
+  command: "connection_failed",
   error_code: number,
 }
 

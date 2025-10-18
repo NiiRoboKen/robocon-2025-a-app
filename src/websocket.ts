@@ -31,7 +31,7 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 	connect: () => {
 		if (get().socket) return;
 
-		const socket = new ReconnectingWebSocket("ws://localhost:3000/ws");
+		const socket = new ReconnectingWebSocket("ws://192.168.11.10:3000/");
 
 		socket.onopen = () => {
 			console.log("WebSocket connected");
@@ -53,8 +53,8 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 		socket.onmessage = (event) => {
 			// console.log("Received:", event.data);
 			try {
-				const receivedData = JSON.parse(event.data);
-				// console.log("Received:", receivedData);
+				const receivedData = JSON.parse(event.data) as Commands;
+				console.log("Received:", receivedData);
 
 				switch (receivedData.command) {
 					case "set_location":
@@ -66,11 +66,11 @@ export const useWebSocket = create<WebSocketState>((set, get) => ({
 							},
 						});
 						break;
-					case "receive_failed": {
+					case "connection_failed": {
 						set({ espConnecting: false });
 						break;
 					}
-					case "receive_success": {
+					case "connection_success": {
 						set({ espConnecting: true });
 						break;
 					}

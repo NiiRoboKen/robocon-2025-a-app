@@ -1,12 +1,13 @@
 .FrontArm {
-  width: 40rem;
-  height: 6rem;
+  width: 40vw;  /* ビューポート幅の40% → 常に画面幅に対して一定 */
+  height: 10vh; /* ビューポート高さの10% → 常に画面高さに対して一定 */
   color: #fff;
   background-color: navy;
 }
+
 .Suction {
-  width: 20rem;
-  height: 6rem;
+  width: 20vw;  /* 画面幅の20% */
+  height: 10vh;
   color: #fff;
   background-color: navy;
 }
