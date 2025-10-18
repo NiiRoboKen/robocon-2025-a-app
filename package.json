@@ -8,11 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-<<<<<<< HEAD
-		"start" : "http-server dist -p 80"
-=======
     "serve": "serve dist -p 80"
->>>>>>> refs/remotes/origin/develop
+
   },
   "dependencies": {
     "@chakra-ui/react": "^3.27.1",
