@@ -1,12 +1,13 @@
 .FrontArm {
-  width: 40rem;
-  height: 6rem;
+  width: 33.5vw;
+  height: 10vh;
   color: #fff;
   background-color: navy;
 }
+
 .Suction {
-  width: 20rem;
-  height: 6rem;
+  width: 16.75vw;
+  height: 10vh;
   color: #fff;
   background-color: navy;
 }

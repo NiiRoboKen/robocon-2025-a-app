@@ -1,12 +1,12 @@
 .SideArm {
-  width: 20rem;
-  height: 6rem;
+  width: 16.75vw;
+  height: 8vh;
   color: #fff;
   background-color: navy;
 }
 .AllClose {
-  width: 40rem;
-  height: 6rem;
+  width: 33.5vw;
+  height: 8vh;
   color: #fff;
   background-color: navy;
 }
@@ -14,16 +14,16 @@
   position: relative;
   border: 2px solid navy; /* 枠の太さ・種類・色 */
   border-radius: 4px; /* 枠の丸み */
-  margin: 0.9em 0.2em; /* 枠外の余白 */
-  padding: 5px 5px;
+  margin: 0.6vw 0.1vh; /* 枠外の余白 */
+  padding: 0.4vw 0.3vh;
 }
 
 .title {
   position: absolute;
-  padding: 0 0.5em;
-  top: -23px; /* タイトルの位置を調整 */
+  padding: 0 0.3vh;
+  top: -2.3vh; /* タイトルの位置を調整 */
   color: black; /* タイトルの文字色 */
   font-weight: bold;
-  font-size: 2em; /* タイトルの文字サイズ */
+  font-size: 200%; /* タイトルの文字サイズ */
   background-color: #ffffff;
 }
