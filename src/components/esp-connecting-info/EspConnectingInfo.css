@@ -15,4 +15,5 @@
   font-weight: bold;
   font-size: 0.9em; /* タイトルの文字サイズ */
   background-color: #ffffff;
+  white-space: nowrap;
 }
